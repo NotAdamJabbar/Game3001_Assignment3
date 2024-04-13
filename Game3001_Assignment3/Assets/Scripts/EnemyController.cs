@@ -10,7 +10,7 @@ public class EnemyController : AgentObject
     Rigidbody2D rb;
     int patrolIndex;
     [SerializeField] Transform[] patrolPoints;
-    [SerializeField] float movementSpeed, rotationSpeed, pointRadius;
+    [SerializeField] float movementSpeed, rotationSpeed, pointRadius, whiskerLength;
     bool canDecide = true;
 
     // Start is called before the first frame update
