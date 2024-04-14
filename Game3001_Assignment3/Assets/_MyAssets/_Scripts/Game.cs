@@ -34,6 +34,8 @@ public class Game : MonoBehaviour
 
         SOMA.AddSound("Hit", Resources.Load<AudioClip>("Audio/Hit"), SoundManager.SoundType.SOUND_SFX);
         SOMA.AddSound("Die", Resources.Load<AudioClip>("Audio/Die"), SoundManager.SoundType.SOUND_SFX);
+        SOMA.AddSound("Attacking", Resources.Load<AudioClip>("Audio/Attacking"), SoundManager.SoundType.SOUND_SFX);
+        SOMA.AddSound("Patrolling", Resources.Load<AudioClip>("Audio/Patrolling"), SoundManager.SoundType.SOUND_SFX);
         SOMA.AddSound("GameSong", Resources.Load<AudioClip>("Audio/GameSong"), SoundManager.SoundType.SOUND_MUSIC);
 
         SOMA.PlayMusic("GameSong");

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CloseCombatEnemy : AgentObject
 {
@@ -11,6 +12,8 @@ public class CloseCombatEnemy : AgentObject
     [SerializeField] float rotationSpeed;
     [SerializeField] float whiskerLength;
     [SerializeField] float whiskerAngle;
+
+    [SerializeField] TMP_Text stateText;
 
     [SerializeField] float detectRange;
     [SerializeField] float attackRange;
@@ -39,6 +42,8 @@ public class CloseCombatEnemy : AgentObject
 
     void Update()
     {
+        stateText.transform.position = new Vector3(transform.position.x, transform.position.y-2f);
+
         Debug.Log("ATTACKING = " + attacking);
 /*        Vector2 direction = (testTarget.position - transform.position).normalized;
         float angleInRadius = Mathf.Atan2(direction.y, direction.x);
@@ -67,9 +72,11 @@ public class CloseCombatEnemy : AgentObject
         switch (state)
         {
             case ActionState.PATROL:
+                stateText.text = "Patrolling";
                 SeekForward();
                 break;
             case ActionState.MOVE_TO_PLAYER:
+                stateText.text = "Attacking";
                 MoveToPlayer();
                 break;
             case ActionState.MOVE_TO_RANGE:
@@ -79,6 +86,7 @@ public class CloseCombatEnemy : AgentObject
                 MoveToPlayer();
                 break;
             case ActionState.ATTACK:
+                stateText.text = "Attacking";
                 MoveToPlayer();
                 break;
             default:

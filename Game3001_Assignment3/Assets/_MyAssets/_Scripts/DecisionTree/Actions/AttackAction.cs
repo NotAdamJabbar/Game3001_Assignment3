@@ -18,9 +18,10 @@ public class AttackAction : ActionNode
             Debug.Log("Starting " + name);
             AgentObject ao = Agent.GetComponent<AgentObject>();
             ao.state = ActionState.ATTACK;
+            Game.Instance.SOMA.PlaySound("Attacking");
 
             //Custom enter actions
-            if(AgentScript is CloseCombatEnemy cce)
+            if (AgentScript is CloseCombatEnemy cce)
             {
                 cce.DoAttack(true);
             }
