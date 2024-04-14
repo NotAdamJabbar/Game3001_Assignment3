@@ -302,24 +302,24 @@ public class GridManager : MonoBehaviour
                 }
                 if (losToShip && losToTarget)
                 {
-                    if (hasLosToShip && hasLosToTarget)
-                        go.GetComponent<SpriteRenderer>().color = Color.green;
-                    else
-                        go.GetComponent<SpriteRenderer>().color = Color.red;
+                    //if (hasLosToShip && hasLosToTarget)
+                    //    go.GetComponent<SpriteRenderer>().color = Color.green;
+                    //else
+                    //    go.GetComponent<SpriteRenderer>().color = Color.red;
                 }
                 else if (losToShip)
                 {
-                    if (hasLosToShip)
-                        go.GetComponent<SpriteRenderer>().color = Color.green;
-                    else
-                        go.GetComponent<SpriteRenderer>().color = Color.red;
+                    //if (hasLosToShip)
+                    //    go.GetComponent<SpriteRenderer>().color = Color.green;
+                    //else
+                    //    go.GetComponent<SpriteRenderer>().color = Color.red;
                 }
                 else if (losToTarget)
                 {
-                    if (hasLosToTarget)
-                        go.GetComponent<SpriteRenderer>().color = Color.green;
-                    else
-                        go.GetComponent<SpriteRenderer>().color = Color.red;
+                //    if (hasLosToTarget)
+                //        go.GetComponent<SpriteRenderer>().color = Color.green;
+                //    else
+                //        go.GetComponent<SpriteRenderer>().color = Color.red;
                 }
             }
         }

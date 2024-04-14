@@ -32,6 +32,10 @@ public class Game : MonoBehaviour
         SOMA.AddSound("Torpedo_k", Resources.Load<AudioClip>("Audio/torpedo_k"), SoundManager.SoundType.SOUND_SFX);
         SOMA.AddSound("Torpedo", Resources.Load<AudioClip>("Audio/torpedo"), SoundManager.SoundType.SOUND_SFX);
 
-        SOMA.PlayMusic("Klingon");
+        SOMA.AddSound("Hit", Resources.Load<AudioClip>("Audio/Hit"), SoundManager.SoundType.SOUND_SFX);
+        SOMA.AddSound("Die", Resources.Load<AudioClip>("Audio/Die"), SoundManager.SoundType.SOUND_SFX);
+        SOMA.AddSound("GameSong", Resources.Load<AudioClip>("Audio/GameSong"), SoundManager.SoundType.SOUND_MUSIC);
+
+        SOMA.PlayMusic("GameSong");
     }
 }

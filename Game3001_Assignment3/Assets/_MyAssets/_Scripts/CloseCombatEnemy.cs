@@ -97,9 +97,16 @@ public class CloseCombatEnemy : AgentObject
         if(collision.gameObject.CompareTag("Player"))
         {
             if (attacking)
+            {
+                Game.Instance.SOMA.PlaySound("Die");
                 SceneManager.LoadScene("LoseScene");
+            }
+
             else
+            {
+                Game.Instance.SOMA.PlaySound("Hit");
                 SceneManager.LoadScene("WinScene");
+            }
         }
     }
     //private void AvoidObstacles()
