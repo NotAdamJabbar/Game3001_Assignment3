@@ -27,6 +27,7 @@ public class CloseCombatEnemy : AgentObject
     private Transform player;
     private bool attacking = false;
     private bool attackSoundPlayedRecently = false;
+    private bool noAttackSoundPlayedRecently = false;
     [SerializeField] Transform testTarget; //Planet to seek
 
     new void Start() // Note the new.
@@ -82,9 +83,11 @@ public class CloseCombatEnemy : AgentObject
                 MoveToPlayer();
                 break;
             case ActionState.MOVE_TO_RANGE:
+                stateText.text = "Attacking";
                 MoveToPlayer();
                 break;
             case ActionState.MOVE_TO_LOS:
+                stateText.text = "Attacking";
                 MoveToPlayer();
                 break;
             case ActionState.ATTACK:
@@ -99,7 +102,10 @@ public class CloseCombatEnemy : AgentObject
 
     public void DoAttack(bool what)
     {
+        if (what )
+            PlayAttackSound();
         attacking = what;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -197,6 +203,7 @@ public class CloseCombatEnemy : AgentObject
     public void StartMoveToPlayer()
     {     
         m_target = player;
+        
         StartCoroutine(PlayAttackSound());
     }
     private IEnumerator PlayAttackSound()
@@ -204,16 +211,16 @@ public class CloseCombatEnemy : AgentObject
         if (!attackSoundPlayedRecently)
             Game.Instance.SOMA.PlaySound("Attacking");
         attackSoundPlayedRecently = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.2f);
         attackSoundPlayedRecently = false;
     }
     private IEnumerator PlayNoAttackSound()
     {
-        if (!attackSoundPlayedRecently)
+        if (!noAttackSoundPlayedRecently)
             Game.Instance.SOMA.PlaySound("Patrolling");
-        attackSoundPlayedRecently = true;
-        yield return new WaitForSeconds(.5f);
-        attackSoundPlayedRecently = false;
+        noAttackSoundPlayedRecently = true;
+        yield return new WaitForSeconds(.2f);
+        noAttackSoundPlayedRecently = false;
     }
     private void MoveToPlayer()
     {
