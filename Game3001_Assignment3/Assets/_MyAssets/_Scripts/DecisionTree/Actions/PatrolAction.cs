@@ -18,7 +18,7 @@ public class PatrolAction : ActionNode
             Debug.Log("Starting " + name);
             AgentObject ao = Agent.GetComponent<AgentObject>();
             ao.state = ActionState.PATROL;
-            Game.Instance.SOMA.PlaySound("Patrolling");
+            
             //Custom enter actions
             if (AgentScript is CloseCombatEnemy cce)
             {

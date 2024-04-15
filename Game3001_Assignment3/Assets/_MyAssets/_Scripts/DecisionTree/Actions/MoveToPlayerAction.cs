@@ -5,6 +5,7 @@ using UnityEngine;
 // TODO: Fill in for Lab 7a.
 public class MoveToPlayerAction : ActionNode
 {
+
     public MoveToPlayerAction()
     {
         name = "Move To Player Action";
@@ -18,7 +19,6 @@ public class MoveToPlayerAction : ActionNode
             Debug.Log("Starting " + name);
             AgentObject ao = Agent.GetComponent<AgentObject>();
             ao.state = ActionState.MOVE_TO_PLAYER;
-            Game.Instance.SOMA.PlaySound("Attacking");
 
             //Custom enter actions
             if (AgentScript is CloseCombatEnemy cce)
@@ -30,4 +30,5 @@ public class MoveToPlayerAction : ActionNode
         //Every frame
         Debug.Log("Preforming " + name);
     }
+   
 }

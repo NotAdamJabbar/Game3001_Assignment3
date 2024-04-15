@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class CloseCombatEnemy : AgentObject
 {
@@ -25,6 +26,7 @@ public class CloseCombatEnemy : AgentObject
     private int patrolIndex;
     private Transform player;
     private bool attacking = false;
+    private bool attackSoundPlayedRecently = false;
     [SerializeField] Transform testTarget; //Planet to seek
 
     new void Start() // Note the new.
@@ -48,7 +50,7 @@ public class CloseCombatEnemy : AgentObject
 /*        Vector2 direction = (testTarget.position - transform.position).normalized;
         float angleInRadius = Mathf.Atan2(direction.y, direction.x);
         whiskerAngle = angleInRadius * Mathf.Rad2Deg;*/
-        bool hit = CastWhisker(whiskerAngle , Color.red) || CastWhisker(-whiskerAngle, Color.blue) || CastWhisker(0,Color.magenta);
+        bool hit = CastWhisker(whiskerAngle , Color.red) || CastWhisker(-whiskerAngle, Color.blue) || CastWhisker(0,Color.magenta) || CastWhisker(whiskerAngle/2,Color.black)||CastWhisker(whiskerAngle/2,Color.cyan);
 
         // bool hit = CastWhisker(whiskerAngle, Color.red);
         // transform.Rotate(0f, 0f, Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
@@ -63,10 +65,10 @@ public class CloseCombatEnemy : AgentObject
         // TODO: Add for Lab 7a. Add seek target for tree temporarily to planet.
         dt.RadiusNode.IsWithinRadius = hit;
 
-        dt.LOSNode.HasLOS = hit;
+        //dt.LOSNode.HasLOS = hit;
 
-        dt.CloseCombatNode.IsWithinCombatRange =hit;
-        // TODO: Update for Lab 7a.
+        //dt.CloseCombatNode.IsWithinCombatRange =hit;
+
         dt.MakeDecision();
 
         switch (state)
@@ -195,6 +197,23 @@ public class CloseCombatEnemy : AgentObject
     public void StartMoveToPlayer()
     {     
         m_target = player;
+        StartCoroutine(PlayAttackSound());
+    }
+    private IEnumerator PlayAttackSound()
+    {
+        if (!attackSoundPlayedRecently)
+            Game.Instance.SOMA.PlaySound("Attacking");
+        attackSoundPlayedRecently = true;
+        yield return new WaitForSeconds(1);
+        attackSoundPlayedRecently = false;
+    }
+    private IEnumerator PlayNoAttackSound()
+    {
+        if (!attackSoundPlayedRecently)
+            Game.Instance.SOMA.PlaySound("Patrolling");
+        attackSoundPlayedRecently = true;
+        yield return new WaitForSeconds(1);
+        attackSoundPlayedRecently = false;
     }
     private void MoveToPlayer()
     {
@@ -218,6 +237,7 @@ public class CloseCombatEnemy : AgentObject
     public void StartPatrol()
     {
         m_target = patrolPoints[patrolIndex];
+        StartCoroutine(PlayNoAttackSound());
         DoAttack(false);
     }
 
