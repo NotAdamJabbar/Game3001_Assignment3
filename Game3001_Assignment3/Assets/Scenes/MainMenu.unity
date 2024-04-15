@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game3001 Assingment 2 \nAdam (101516399) & \nYasha ()"
+  m_text: "Game3001 Assingment 2 \nAdam (101516399) & \nYasha (101451046)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9f69cc999f0147f4960e54b8c408a01, type: 2}
   m_sharedMaterial: {fileID: 4538327350300605300, guid: a9f69cc999f0147f4960e54b8c408a01, type: 2}
