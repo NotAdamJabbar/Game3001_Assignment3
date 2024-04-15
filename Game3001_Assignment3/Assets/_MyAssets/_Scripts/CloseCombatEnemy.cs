@@ -204,7 +204,7 @@ public class CloseCombatEnemy : AgentObject
         if (!attackSoundPlayedRecently)
             Game.Instance.SOMA.PlaySound("Attacking");
         attackSoundPlayedRecently = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         attackSoundPlayedRecently = false;
     }
     private IEnumerator PlayNoAttackSound()
@@ -212,7 +212,7 @@ public class CloseCombatEnemy : AgentObject
         if (!attackSoundPlayedRecently)
             Game.Instance.SOMA.PlaySound("Patrolling");
         attackSoundPlayedRecently = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         attackSoundPlayedRecently = false;
     }
     private void MoveToPlayer()
